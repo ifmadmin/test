@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ICS Kalender Sync</string>
+    <string name="app_name">O.M.A. Termine</string>
     <string name="add_calendar">Kalender hinzufügen</string>
     <string name="calendar_name">Kalendername</string>
     <string name="calendar_name_hint">z.B. Arbeit, Geburtstage</string>

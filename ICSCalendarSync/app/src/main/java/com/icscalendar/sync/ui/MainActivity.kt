@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.icscalendar.sync.BuildConfig
 import com.icscalendar.sync.R
 import com.icscalendar.sync.data.CalendarConfig
 import com.icscalendar.sync.data.CalendarRepository
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         setupRecyclerView()
         setupFab()
         setupPermissionButton()
+        setupVersionInfo()
 
         checkPermissions()
     }
@@ -72,6 +74,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupToolbar() {
         setSupportActionBar(binding.toolbar)
+    }
+
+    private fun setupVersionInfo() {
+        binding.tvVersion.text = "Version ${BuildConfig.VERSION_NAME}"
     }
 
     private fun setupRecyclerView() {

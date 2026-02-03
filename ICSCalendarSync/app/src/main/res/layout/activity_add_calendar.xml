@@ -91,13 +91,14 @@
                 android:textColor="@color/gray_dark"
                 android:textSize="14sp" />
 
-            <LinearLayout
+            <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/colorPicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:orientation="horizontal" />
+                app:columnCount="6"
+                app:rowCount="2"
+                app:useDefaultMargins="true" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSave"

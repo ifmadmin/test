@@ -91,4 +91,13 @@
         app:srcCompat="@drawable/ic_add"
         app:tint="@color/white" />
 
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/gray"
+        android:textSize="12sp" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

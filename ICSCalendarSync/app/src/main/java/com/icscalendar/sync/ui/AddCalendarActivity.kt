@@ -7,8 +7,8 @@ import android.util.Patterns
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.gridlayout.widget.GridLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -86,14 +86,19 @@ class AddCalendarActivity : AppCompatActivity() {
 
     private fun setupColorPicker() {
         val colorPicker = binding.colorPicker
-        val size = (48 * resources.displayMetrics.density).toInt()
-        val margin = (8 * resources.displayMetrics.density).toInt()
+        val size = (44 * resources.displayMetrics.density).toInt()
+        val margin = (6 * resources.displayMetrics.density).toInt()
 
-        for (color in calendarColors) {
+        calendarColors.forEachIndexed { index, color ->
             val colorView = ImageView(this).apply {
-                layoutParams = LinearLayout.LayoutParams(size, size).apply {
+                val params = GridLayout.LayoutParams().apply {
+                    width = size
+                    height = size
                     setMargins(margin, margin, margin, margin)
+                    columnSpec = GridLayout.spec(index % 6)
+                    rowSpec = GridLayout.spec(index / 6)
                 }
+                layoutParams = params
                 setOnClickListener { selectColor(color) }
             }
 

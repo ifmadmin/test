@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#1976D2</color>
-    <color name="primary_dark">#1565C0</color>
-    <color name="primary_light">#42A5F5</color>
-    <color name="accent">#FF5722</color>
+    <!-- IFM Business Colors -->
+    <color name="primary">#004B87</color>
+    <color name="primary_dark">#003366</color>
+    <color name="primary_light">#3A7CA5</color>
+    <color name="accent">#F39200</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray_light">#F5F5F5</color>
