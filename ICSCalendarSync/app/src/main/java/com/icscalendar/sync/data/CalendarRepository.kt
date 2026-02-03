@@ -14,10 +14,16 @@ class CalendarRepository(context: Context) {
         val json = prefs.getString(KEY_CALENDARS, null) ?: return emptyList()
         val type = object : TypeToken<List<CalendarConfig>>() {}.type
         return try {
-            gson.fromJson(json, type) ?: emptyList()
+            val calendars: List<CalendarConfig> = gson.fromJson(json, type) ?: emptyList()
+            // Remove duplicates by ID (keep the last one)
+            calendars.associateBy { it.id }.values.toList()
         } catch (e: Exception) {
             emptyList()
         }
+    }
+
+    fun clearAllData() {
+        prefs.edit().clear().apply()
     }
 
     fun saveCalendar(calendar: CalendarConfig) {

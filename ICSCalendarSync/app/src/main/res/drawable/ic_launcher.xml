@@ -6,7 +6,7 @@
     android:viewportHeight="108">
     <!-- Background with IFM Blue -->
     <path
-        android:fillColor="#004B87"
+        android:fillColor="#2A4566"
         android:pathData="M0,0h108v108h-108z"/>
     <!-- Calendar body -->
     <path
@@ -16,25 +16,25 @@
         android:strokeColor="#FFFFFF"/>
     <!-- Calendar header -->
     <path
-        android:fillColor="#F39200"
+        android:fillColor="#AD0131"
         android:pathData="M24,30h60v12h-60z"/>
     <!-- Calendar rings -->
     <path
-        android:fillColor="#004B87"
+        android:fillColor="#2A4566"
         android:pathData="M32,24v12M52,24v12M72,24v12"
         android:strokeWidth="4"
         android:strokeColor="#FFFFFF"
         android:strokeLineCap="round"/>
     <!-- Calendar dates -->
     <path
-        android:fillColor="#004B87"
+        android:fillColor="#2A4566"
         android:pathData="M34,52h8v8h-8zM48,52h8v8h-8zM62,52h8v8h-8zM34,64h8v8h-8zM48,64h8v8h-8z"/>
-    <!-- Sync checkmark in IFM orange -->
+    <!-- Sync checkmark in IFM red -->
     <path
-        android:fillColor="#F39200"
+        android:fillColor="#AD0131"
         android:pathData="M70,58l6,6l12,-12"
         android:strokeWidth="4"
-        android:strokeColor="#F39200"
+        android:strokeColor="#AD0131"
         android:strokeLineCap="round"
         android:strokeLineJoin="round"/>
 </vector>

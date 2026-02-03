@@ -29,6 +29,11 @@
     <string name="confirm_delete">Kalender löschen?</string>
     <string name="confirm_delete_message">Möchtest du diesen Kalender und alle synchronisierten Ereignisse löschen?</string>
 
+    <string name="help_google_calendar">Wie aktiviere ich den Kalender in Google Kalender?</string>
+    <string name="help_dialog_title">Kalender in Google Kalender anzeigen</string>
+    <string name="help_dialog_message">So aktivierst du den Kalender in Google Kalender:\n\n1. Öffne die Google Kalender App\n\n2. Tippe auf das Menü (☰) oben links\n\n3. Scrolle nach unten und tippe auf \"Einstellungen\"\n\n4. Tippe auf \"Konten verwalten\"\n\n5. Wähle \"O.M.A. Termine\" (unter Nicht-Google-Konten)\n\n6. Aktiviere deinen Kalender\n\nDanach sind deine Termine in Google Kalender sichtbar!</string>
+    <string name="help_dialog_ok">Verstanden</string>
+
     <string-array name="sync_intervals">
         <item>15 Minuten</item>
         <item>30 Minuten</item>

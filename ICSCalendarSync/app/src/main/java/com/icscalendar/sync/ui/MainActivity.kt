@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         setupFab()
         setupPermissionButton()
         setupVersionInfo()
+        setupHelpLink()
 
         checkPermissions()
     }
@@ -78,6 +79,20 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupVersionInfo() {
         binding.tvVersion.text = "Version ${BuildConfig.VERSION_NAME}"
+    }
+
+    private fun setupHelpLink() {
+        binding.tvHelpLink.setOnClickListener {
+            showHelpDialog()
+        }
+    }
+
+    private fun showHelpDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.help_dialog_title)
+            .setMessage(R.string.help_dialog_message)
+            .setPositiveButton(R.string.help_dialog_ok, null)
+            .show()
     }
 
     private fun setupRecyclerView() {
