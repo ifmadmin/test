@@ -1,9 +1,9 @@
 package com.icscalendar.sync.service
 
+import android.accounts.AccountManager
 import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
-import android.database.Cursor
 import android.net.Uri
 import android.provider.CalendarContract
 import com.icscalendar.sync.data.CalendarConfig
@@ -13,8 +13,36 @@ import java.util.TimeZone
 class CalendarManager(private val context: Context) {
 
     companion object {
-        private const val ACCOUNT_NAME = "ICS Calendar Sync"
-        private const val ACCOUNT_TYPE = CalendarContract.ACCOUNT_TYPE_LOCAL
+        private const val GOOGLE_ACCOUNT_TYPE = "com.google"
+        private const val LOCAL_ACCOUNT_NAME = "ICS Calendar Sync"
+        private const val LOCAL_ACCOUNT_TYPE = CalendarContract.ACCOUNT_TYPE_LOCAL
+    }
+
+    private var cachedAccountName: String? = null
+    private var cachedAccountType: String? = null
+
+    private fun getGoogleAccount(): Pair<String, String>? {
+        if (cachedAccountName != null && cachedAccountType != null) {
+            return Pair(cachedAccountName!!, cachedAccountType!!)
+        }
+
+        // Try to find a Google account
+        try {
+            val accountManager = AccountManager.get(context)
+            val accounts = accountManager.getAccountsByType(GOOGLE_ACCOUNT_TYPE)
+            if (accounts.isNotEmpty()) {
+                cachedAccountName = accounts[0].name
+                cachedAccountType = GOOGLE_ACCOUNT_TYPE
+                return Pair(cachedAccountName!!, cachedAccountType!!)
+            }
+        } catch (e: Exception) {
+            // Fall through to local account
+        }
+
+        // Fallback to local account
+        cachedAccountName = LOCAL_ACCOUNT_NAME
+        cachedAccountType = LOCAL_ACCOUNT_TYPE
+        return Pair(cachedAccountName!!, cachedAccountType!!)
     }
 
     fun getOrCreateCalendar(config: CalendarConfig): Long {
@@ -50,10 +78,11 @@ class CalendarManager(private val context: Context) {
     }
 
     private fun findCalendarByName(name: String): Long {
+        val account = getGoogleAccount() ?: return -1
         val uri = CalendarContract.Calendars.CONTENT_URI
         val projection = arrayOf(CalendarContract.Calendars._ID)
         val selection = "${CalendarContract.Calendars.CALENDAR_DISPLAY_NAME} = ? AND ${CalendarContract.Calendars.ACCOUNT_NAME} = ?"
-        val selectionArgs = arrayOf(name, ACCOUNT_NAME)
+        val selectionArgs = arrayOf(name, account.first)
 
         context.contentResolver.query(uri, projection, selection, selectionArgs, null)?.use { cursor ->
             if (cursor.moveToFirst()) {
@@ -64,14 +93,15 @@ class CalendarManager(private val context: Context) {
     }
 
     private fun createCalendar(config: CalendarConfig): Long {
+        val account = getGoogleAccount() ?: return -1
         val values = ContentValues().apply {
-            put(CalendarContract.Calendars.ACCOUNT_NAME, ACCOUNT_NAME)
-            put(CalendarContract.Calendars.ACCOUNT_TYPE, ACCOUNT_TYPE)
+            put(CalendarContract.Calendars.ACCOUNT_NAME, account.first)
+            put(CalendarContract.Calendars.ACCOUNT_TYPE, account.second)
             put(CalendarContract.Calendars.NAME, config.name)
             put(CalendarContract.Calendars.CALENDAR_DISPLAY_NAME, config.name)
             put(CalendarContract.Calendars.CALENDAR_COLOR, config.color)
             put(CalendarContract.Calendars.CALENDAR_ACCESS_LEVEL, CalendarContract.Calendars.CAL_ACCESS_OWNER)
-            put(CalendarContract.Calendars.OWNER_ACCOUNT, ACCOUNT_NAME)
+            put(CalendarContract.Calendars.OWNER_ACCOUNT, account.first)
             put(CalendarContract.Calendars.VISIBLE, 1)
             put(CalendarContract.Calendars.SYNC_EVENTS, 1)
             put(CalendarContract.Calendars.CALENDAR_TIME_ZONE, TimeZone.getDefault().id)
@@ -174,10 +204,11 @@ class CalendarManager(private val context: Context) {
     }
 
     private fun asSyncAdapter(uri: Uri): Uri {
+        val account = getGoogleAccount() ?: return uri
         return uri.buildUpon()
             .appendQueryParameter(CalendarContract.CALLER_IS_SYNCADAPTER, "true")
-            .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, ACCOUNT_NAME)
-            .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, ACCOUNT_TYPE)
+            .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_NAME, account.first)
+            .appendQueryParameter(CalendarContract.Calendars.ACCOUNT_TYPE, account.second)
             .build()
     }
 
