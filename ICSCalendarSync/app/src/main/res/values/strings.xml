@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ICS Kalender Sync</string>
+    <string name="add_calendar">Kalender hinzufügen</string>
+    <string name="calendar_name">Kalendername</string>
+    <string name="calendar_name_hint">z.B. Arbeit, Geburtstage</string>
+    <string name="ics_url">ICS-Datei URL</string>
+    <string name="ics_url_hint">https://example.com/calendar.ics</string>
+    <string name="sync_interval">Synchronisierungsintervall</string>
+    <string name="sync_now">Jetzt synchronisieren</string>
+    <string name="save">Speichern</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="delete">Löschen</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="no_calendars">Keine Kalender konfiguriert.\nTippe auf + um einen hinzuzufügen.</string>
+    <string name="last_sync">Letzte Synchronisierung: %s</string>
+    <string name="never_synced">Noch nie synchronisiert</string>
+    <string name="events_count">%d Ereignisse</string>
+    <string name="syncing">Synchronisiere…</string>
+    <string name="sync_success">Synchronisierung erfolgreich</string>
+    <string name="sync_error">Synchronisierung fehlgeschlagen: %s</string>
+    <string name="permission_required">Kalenderberechtigung erforderlich</string>
+    <string name="permission_rationale">Diese App benötigt Zugriff auf deinen Kalender, um Ereignisse zu synchronisieren.</string>
+    <string name="grant_permission">Berechtigung erteilen</string>
+    <string name="calendar_color">Kalenderfarbe</string>
+    <string name="validation_name_required">Bitte gib einen Kalendernamen ein</string>
+    <string name="validation_url_required">Bitte gib eine ICS-URL ein</string>
+    <string name="validation_url_invalid">Bitte gib eine gültige URL ein</string>
+    <string name="confirm_delete">Kalender löschen?</string>
+    <string name="confirm_delete_message">Möchtest du diesen Kalender und alle synchronisierten Ereignisse löschen?</string>
+
+    <string-array name="sync_intervals">
+        <item>15 Minuten</item>
+        <item>30 Minuten</item>
+        <item>1 Stunde</item>
+        <item>3 Stunden</item>
+        <item>6 Stunden</item>
+        <item>12 Stunden</item>
+        <item>24 Stunden</item>
+    </string-array>
+
+    <string-array name="sync_interval_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>720</item>
+        <item>1440</item>
+    </string-array>
+</resources>
