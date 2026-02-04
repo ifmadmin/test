@@ -50,6 +50,11 @@
             android:label="@string/add_calendar"
             android:parentActivityName=".ui.MainActivity" />
 
+        <activity
+            android:name=".ui.WebViewActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.MainActivity" />
+
         <!-- WorkManager initialization -->
         <provider
             android:name="androidx.startup.InitializationProvider"

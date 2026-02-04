@@ -34,6 +34,16 @@
     <string name="help_dialog_message">So aktivierst du den Kalender in Google Kalender:\n\n1. Öffne die Google Kalender App\n\n2. Tippe auf das Menü (☰) oben links\n\n3. Scrolle nach unten und tippe auf \"Einstellungen\"\n\n4. Tippe auf \"Konten verwalten\"\n\n5. Wähle \"O.M.A. Termine\" (unter Nicht-Google-Konten)\n\n6. Aktiviere deinen Kalender\n\nDanach sind deine Termine in Google Kalender sichtbar!</string>
     <string name="help_dialog_ok">Verstanden</string>
 
+    <!-- Navigation Menu -->
+    <string name="menu_google_calendar">Google Kalender aktivieren</string>
+    <string name="menu_what_is_this">Was ist das hier?</string>
+    <string name="menu_privacy">Datenschutzerklärung</string>
+    <string name="menu_imprint">Impressum</string>
+
+    <!-- What is this dialog -->
+    <string name="what_is_this_title">Was ist O.M.A. Termine?</string>
+    <string name="what_is_this_message">O.M.A. Termine synchronisiert ICS-Kalenderdateien mit deinem Android-Gerät.\n\n**So funktioniert\'s:**\n\n1. Tippe auf das + Symbol\n2. Gib einen Namen für den Kalender ein\n3. Füge die URL einer ICS-Datei ein\n4. Wähle ein Sync-Intervall\n5. Wähle eine Farbe\n6. Speichern\n\nDie App synchronisiert automatisch im Hintergrund. Um die Termine in Google Kalender zu sehen, aktiviere den Kalender über das Menü → \"Google Kalender aktivieren\".\n\n**IFM Business Solutions**\nwww.ifm-business.de</string>
+
     <string-array name="sync_intervals">
         <item>15 Minuten</item>
         <item>30 Minuten</item>

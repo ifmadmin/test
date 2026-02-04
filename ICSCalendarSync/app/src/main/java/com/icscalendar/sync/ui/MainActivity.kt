@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.icscalendar.sync.BuildConfig
@@ -57,11 +58,11 @@ class MainActivity : AppCompatActivity() {
         syncService = SyncService(this)
 
         setupToolbar()
+        setupNavigationDrawer()
         setupRecyclerView()
         setupFab()
         setupPermissionButton()
         setupVersionInfo()
-        setupHelpLink()
 
         checkPermissions()
     }
@@ -73,26 +74,67 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupToolbar() {
-        setSupportActionBar(binding.toolbar)
-    }
-
-    private fun setupVersionInfo() {
-        binding.tvVersion.text = "Version ${BuildConfig.VERSION_NAME}"
-    }
-
-    private fun setupHelpLink() {
-        binding.tvHelpLink.setOnClickListener {
-            showHelpDialog()
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
         }
     }
 
-    private fun showHelpDialog() {
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        binding.toolbar.setNavigationOnClickListener {
+            binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
+    }
+
+    private fun setupNavigationDrawer() {
+        binding.navigationView.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_google_calendar -> showGoogleCalendarHelp()
+                R.id.nav_what_is_this -> showWhatIsThisDialog()
+                R.id.nav_privacy -> openWebView(
+                    "https://ifm-business.de/rechtliches/datenschutzerklaerung/",
+                    getString(R.string.menu_privacy)
+                )
+                R.id.nav_imprint -> openWebView(
+                    "https://ifm-business.de/rechtliches/impressum/",
+                    getString(R.string.menu_imprint)
+                )
+            }
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
+    }
+
+    private fun showGoogleCalendarHelp() {
         AlertDialog.Builder(this)
             .setTitle(R.string.help_dialog_title)
             .setMessage(R.string.help_dialog_message)
             .setPositiveButton(R.string.help_dialog_ok, null)
             .show()
+    }
+
+    private fun showWhatIsThisDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.what_is_this_title)
+            .setMessage(R.string.what_is_this_message)
+            .setPositiveButton(R.string.help_dialog_ok, null)
+            .show()
+    }
+
+    private fun openWebView(url: String, title: String) {
+        val intent = Intent(this, WebViewActivity::class.java).apply {
+            putExtra(WebViewActivity.EXTRA_URL, url)
+            putExtra(WebViewActivity.EXTRA_TITLE, title)
+        }
+        startActivity(intent)
+    }
+
+    private fun setupVersionInfo() {
+        binding.tvVersion.text = "Version ${BuildConfig.VERSION_NAME}"
     }
 
     private fun setupRecyclerView() {

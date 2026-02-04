@@ -25,21 +25,21 @@ class AddCalendarActivity : AppCompatActivity() {
     private lateinit var repository: CalendarRepository
     private var calendarId: String? = null
     private var existingCalendar: CalendarConfig? = null
-    private var selectedColor: Int = Color.parseColor("#1976D2")
+    private var selectedColor: Int = Color.parseColor("#2A4566")
 
     private val calendarColors = listOf(
-        Color.parseColor("#F44336"), // Red
-        Color.parseColor("#E91E63"), // Pink
-        Color.parseColor("#9C27B0"), // Purple
-        Color.parseColor("#673AB7"), // Deep Purple
-        Color.parseColor("#3F51B5"), // Indigo
-        Color.parseColor("#2196F3"), // Blue
-        Color.parseColor("#00BCD4"), // Cyan
-        Color.parseColor("#009688"), // Teal
-        Color.parseColor("#4CAF50"), // Green
-        Color.parseColor("#8BC34A"), // Light Green
-        Color.parseColor("#FF9800"), // Orange
-        Color.parseColor("#795548")  // Brown
+        Color.parseColor("#2A4566"), // IFM Business
+        Color.parseColor("#AD0131"), // IFM Focus
+        Color.parseColor("#86BC25"), // IFM Growth
+        Color.parseColor("#003153"), // IFM Classic
+        Color.parseColor("#0082A1"), // Communication
+        Color.parseColor("#F39200"), // Creative
+        Color.parseColor("#575756"), // Concept
+        Color.parseColor("#4A7023"), // Deep Growth
+        Color.parseColor("#E04050"), // Light Focus
+        Color.parseColor("#00A5DF"), // Innovation
+        Color.parseColor("#8E9AAF"), // Neutral
+        Color.parseColor("#6C5B7B")  // Elegant
     )
 
     private var colorViews = mutableListOf<ImageView>()
